@@ -1,17 +1,21 @@
-import { useState } from 'react'
-import { Nav } from '../components/Nav'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useDbContext } from '../DbContext'
 import { Hero } from '../components/Hero'
 import { TeamsPreview } from '../components/TeamsPreview'
 import { ProductsPreview } from '../components/ProductsPreview'
 import { Allocator } from '../components/Allocator'
-import { Login } from '../components/Login'
-import { useDbContext } from '../DbContext'
-import { useAuth } from '../AuthContext'
 
 export function Landing() {
   const { db, loading, error } = useDbContext()
-  const { isAuthenticated } = useAuth()
-  const [showLogin, setShowLogin] = useState(false)
+  const { hash } = useLocation()
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.slice(1)
+      requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }))
+    }
+  }, [hash])
 
   if (loading) {
     return (
@@ -30,25 +34,13 @@ export function Landing() {
   }
 
   return (
-    <main className="landing-page">
-      <Nav onLoginClick={() => setShowLogin(true)} />
+    <div className="landing-page">
       <Hero event={db.event} />
       <div className="landing-sections">
         <TeamsPreview teams={db.teams} />
         <ProductsPreview products={db.products} />
-        <section id="assign" className="allocator-section">
-          {showLogin && (
-            <div className="allocator section">
-              <Login onSuccess={() => setShowLogin(false)} />
-            </div>
-          )}
-          <Allocator
-            teams={db.teams}
-            products={db.products}
-            readOnly={!isAuthenticated}
-          />
-        </section>
+        <Allocator />
       </div>
-    </main>
+    </div>
   )
 }

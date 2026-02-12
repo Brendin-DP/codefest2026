@@ -1,118 +1,141 @@
 import { useState, useEffect, useCallback } from 'react'
 import type { Db, Allocations } from './types'
 
-const ALLOCATIONS_KEY = 'codefest-allocations'
+const API_BASE = '/api'
+const DB_PATH = '/db.json'
+const LOCALSTORAGE_KEY = 'codefest-allocations'
 
 function getStoredAllocations(): Allocations | null {
   try {
-    const raw = localStorage.getItem(ALLOCATIONS_KEY)
+    const raw = localStorage.getItem(LOCALSTORAGE_KEY)
     if (!raw) return null
-    const parsed = JSON.parse(raw) as Allocations
+    const parsed = JSON.parse(raw)
     return typeof parsed === 'object' && parsed !== null ? parsed : null
   } catch {
     return null
   }
 }
 
-function setStoredAllocations(allocations: Allocations): void {
-  localStorage.setItem(ALLOCATIONS_KEY, JSON.stringify(allocations))
+function setStoredAllocations(allocations: Allocations) {
+  try {
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(allocations))
+  } catch {
+    // ignore
+  }
 }
 
 export function useDb() {
   const [db, setDb] = useState<Db | null>(null)
+  const [allocations, setAllocationsState] = useState<Allocations>({})
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const [allocations, setAllocationsState] = useState<Allocations>({})
+  const fetchDb = useCallback(async () => {
+    setLoading(true)
+    setError(null)
+    try {
+      const res = await fetch(`${API_BASE}/db`)
+      if (!res.ok) throw new Error('Failed to fetch')
+      const data: Db = await res.json()
+      const allocs = data.allocations ?? {}
+      setDb(data)
+      setAllocationsState(allocs)
+      setStoredAllocations(allocs)
+    } catch {
+      try {
+        const res = await fetch(DB_PATH)
+        if (!res.ok) throw new Error('Failed to fetch db.json')
+        const data: Db = await res.json()
+        const fromApi = data.allocations ?? {}
+        const fromStorage = getStoredAllocations()
+        setDb(data)
+        setAllocationsState(
+          fromStorage && Object.keys(fromStorage).length > 0 ? fromStorage : fromApi
+        )
+      } catch (e) {
+        setError(e instanceof Error ? e.message : 'Failed to load data')
+      }
+    } finally {
+      setLoading(false)
+    }
+  }, [])
 
   useEffect(() => {
-    fetch('/db.json')
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to load db.json')
-        return res.json() as Promise<Db>
+    fetchDb()
+  }, [fetchDb])
+
+  const saveAllocations = useCallback(async (next: Allocations) => {
+    try {
+      const res = await fetch(`${API_BASE}/allocations`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ allocations: next }),
       })
-      .then((data) => {
-        setDb(data)
-        const stored = getStoredAllocations()
-        setAllocationsState(stored ?? data.allocations ?? {})
-      })
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false))
+      if (res.ok) {
+        setStoredAllocations(next)
+        return
+      }
+    } catch {
+      // API unavailable – fall through to localStorage
+    }
+    setStoredAllocations(next)
   }, [])
 
-  const setAllocations = useCallback((next: Allocations | ((prev: Allocations) => Allocations)) => {
-    setAllocationsState((prev) => {
-      const nextVal = typeof next === 'function' ? next(prev) : next
-      setStoredAllocations(nextVal)
-      return nextVal
-    })
+  useEffect(() => {
+    const handler = () => {
+      const stored = getStoredAllocations()
+      if (stored && Object.keys(stored).length >= 0) {
+        setAllocationsState(stored)
+      }
+    }
+    window.addEventListener('storage', handler)
+    return () => window.removeEventListener('storage', handler)
   }, [])
 
-  const assignTeam = useCallback(
-    (productId: string, teamId: string) => {
-      setAllocations((prev) => {
-        const productTeams = [...(prev[productId] ?? [])]
-        if (productTeams.includes(teamId)) return prev
-        productTeams.push(teamId)
-        return { ...prev, [productId]: productTeams }
-      })
+  const setAllocation = useCallback(
+    (productId: string, teamIds: string[]) => {
+      const next: Allocations = {
+        ...allocations,
+        [productId]: teamIds,
+      }
+      setAllocationsState(next)
+      saveAllocations(next)
     },
-    [setAllocations]
+    [allocations, saveAllocations]
   )
 
-  const unassignTeam = useCallback(
-    (productId: string, teamId: string) => {
-      setAllocations((prev) => {
-        const productTeams = (prev[productId] ?? []).filter((id) => id !== teamId)
-        if (productTeams.length === 0) {
-          const { [productId]: _, ...rest } = prev
-          return rest
-        }
-        return { ...prev, [productId]: productTeams }
-      })
+  const setAllocations = useCallback(
+    (next: Allocations) => {
+      setAllocationsState(next)
+      saveAllocations(next)
     },
-    [setAllocations]
-  )
-
-  const getUnallocatedTeams = useCallback(
-    <T extends { id: string }>(teams: T[]): T[] => {
-      if (!teams.length) return []
-      const assigned = new Set(Object.values(allocations).flat())
-      return teams.filter((t) => !assigned.has(t.id))
-    },
-    [allocations]
+    [saveAllocations]
   )
 
   const getTeamsForProduct = useCallback(
-    (productId: string) => allocations[productId] ?? [],
+    (productId: string): string[] => allocations[productId] ?? [],
     [allocations]
   )
 
   const getProductForTeam = useCallback(
-    (teamId: string) => {
-      for (const [productId, teamIds] of Object.entries(allocations)) {
-        if (teamIds.includes(teamId)) return productId
+    (teamId: string): string | null => {
+      for (const [pid, teamIds] of Object.entries(allocations)) {
+        if (teamIds.includes(teamId)) return pid
       }
       return null
     },
     [allocations]
   )
 
-  const exportAllocations = useCallback(() => {
-    return JSON.stringify(allocations, null, 2)
-  }, [allocations])
-
   return {
     db,
-    loading,
-    error,
     allocations,
+    setAllocation,
     setAllocations,
-    assignTeam,
-    unassignTeam,
-    getUnallocatedTeams,
     getTeamsForProduct,
     getProductForTeam,
-    exportAllocations,
+    loading,
+    error,
+    refetch: fetchDb,
   }
 }

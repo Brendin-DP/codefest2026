@@ -6,10 +6,43 @@
     "time": "07:00 - 18:00"
   },
   "teams": [
-    { "id": "team-1", "name": "Team Alpha", "members": ["Dev A", "Dev B"], "avatar": null },
-    { "id": "team-2", "name": "Team Beta", "members": ["Dev C", "Dev D"], "avatar": null },
-    { "id": "team-3", "name": "Team Gamma", "members": ["Dev E", "Dev F"], "avatar": null },
-    { "id": "team-qa", "name": "QA Squad", "members": ["QA 1", "QA 2", "QA 3"], "avatar": null }
+    {
+      "id": "team-1",
+      "name": "Team Alpha",
+      "members": [
+        "Dev A",
+        "Dev B"
+      ],
+      "avatar": null
+    },
+    {
+      "id": "team-2",
+      "name": "Team Beta",
+      "members": [
+        "Dev C",
+        "Dev D"
+      ],
+      "avatar": null
+    },
+    {
+      "id": "team-3",
+      "name": "Team Gamma",
+      "members": [
+        "Dev E",
+        "Dev F"
+      ],
+      "avatar": null
+    },
+    {
+      "id": "team-qa",
+      "name": "QA Squad",
+      "members": [
+        "QA 1",
+        "QA 2",
+        "QA 3"
+      ],
+      "avatar": null
+    }
   ],
   "products": [
     {
@@ -24,7 +57,10 @@
       "riskLevel": 2,
       "reward": 2,
       "logo": "/assets/logos/Signal Loop.jpeg",
-      "nonNegotiables": ["Doesn't need a real database", "Must be deployed"]
+      "nonNegotiables": [
+        "Doesn't need a real database",
+        "Must be deployed"
+      ]
     },
     {
       "id": "product-2",
@@ -38,7 +74,10 @@
       "riskLevel": 3,
       "reward": 4,
       "logo": "/assets/logos/Atlas Systems.jpeg",
-      "nonNegotiables": ["Doesn't need deployment", "Real database required"]
+      "nonNegotiables": [
+        "Doesn't need deployment",
+        "Real database required"
+      ]
     },
     {
       "id": "product-3",
@@ -54,5 +93,9 @@
       "logo": "/assets/logos/Mainframe.jpeg"
     }
   ],
-  "allocations": {}
+  "allocations": {
+    "product-3": [
+      "team-qa"
+    ]
+  }
 }

@@ -1,72 +1,85 @@
-import type { Team, Product } from '../types'
+import { useAuth } from '../AuthContext'
 import { useDbContext } from '../DbContext'
+import type { Team } from '../types'
 import './Allocator.css'
 
-interface AllocatorProps {
-  teams: Team[]
-  products: Product[]
-  readOnly?: boolean
-}
+export function Allocator() {
+  const { isAuthenticated } = useAuth()
+  const { db, allocations, setAllocation, setAllocations, getTeamsForProduct } = useDbContext()
 
-export function Allocator({ teams, products, readOnly = false }: AllocatorProps) {
-  const {
-    getUnallocatedTeams,
-    getTeamsForProduct,
-    assignTeam,
-    unassignTeam,
-    exportAllocations,
-  } = useDbContext()
+  if (!db) return null
 
-  const unallocated = getUnallocatedTeams(teams)
+  const handleAssign = (productId: string, teamId: string) => {
+    const current = getTeamsForProduct(productId)
+    if (current.includes(teamId)) return
+    const next: typeof allocations = {}
+    for (const [pid, teamIds] of Object.entries(allocations)) {
+      const updated = pid === productId
+        ? [...(teamIds ?? []), teamId]
+        : (teamIds ?? []).filter((id) => id !== teamId)
+      if (updated.length > 0) next[pid] = updated
+    }
+    if (!(productId in next)) next[productId] = [teamId]
+    setAllocations(next)
+  }
 
-  const handleCopyExport = () => {
-    const json = exportAllocations()
-    navigator.clipboard.writeText(json)
-    alert('Allocations copied to clipboard. Paste into db.json "allocations" field and redeploy.')
+  const handleUnassign = (productId: string, teamId: string) => {
+    const current = getTeamsForProduct(productId)
+    setAllocation(productId, current.filter((id) => id !== teamId))
+  }
+
+  const assignedTeamIds = new Set<string>(
+    Object.values(allocations).flat()
+  )
+  const unallocatedTeams = db.teams.filter((t) => !assignedTeamIds.has(t.id))
+
+  const exportAllocations = () => {
+    const payload = JSON.stringify({ allocations }, null, 2)
+    navigator.clipboard.writeText(payload).then(
+      () => alert('Allocations copied to clipboard. Paste into db.json "allocations" when the API is unavailable.'),
+      () => alert('Could not copy to clipboard.')
+    )
   }
 
   return (
-    <section className={`allocator section ${readOnly ? 'allocator-readonly' : ''}`}>
-      <h2>Assign teams</h2>
+    <section id="assignment" className="allocator section allocator-section">
+      <h2>Assignment</h2>
       <p className="allocator-hint">
-        {readOnly
-          ? 'View-only. Sign in to add or remove team allocations.'
-          : 'Add teams to products. Changes save to this device. Use Export to update db.json for everyone.'}
+        {isAuthenticated
+          ? 'Assign teams to products. Changes save automatically.'
+          : 'Log in to manage team assignments.'}
       </p>
 
       <div className="allocator-unallocated">
-        <h3>Unallocated</h3>
-        {unallocated.length === 0 ? (
-          <p className="allocator-empty">All teams assigned.</p>
+        <h3>Unallocated teams</h3>
+        {unallocatedTeams.length === 0 ? (
+          <p className="allocator-empty">All teams are assigned.</p>
         ) : (
           <div className="allocator-unallocated-list">
-            {unallocated.map((team) => (
-              <span key={team.id} className="allocator-team-badge unallocated">
-                {team.name}
-              </span>
+            {unallocatedTeams.map((team) => (
+              <span key={team.id} className="allocator-team-badge unallocated">{team.name}</span>
             ))}
           </div>
         )}
       </div>
 
       <div className="allocator-products">
-        {products.map((product) => {
-          const assignedIds = getTeamsForProduct(product.id)
-          const assigned = teams.filter((t) => assignedIds.includes(t.id))
-
+        {db.products.map((product) => {
+          const teamIds = getTeamsForProduct(product.id)
+          const teams: Team[] = db.teams.filter((t) => teamIds.includes(t.id))
           return (
             <div key={product.id} className="allocator-product">
               <h4>{product.name}</h4>
               <div className="allocator-assigned">
-                {assigned.map((team) => (
+                {teams.map((team) => (
                   <span key={team.id} className="allocator-team-badge assigned">
                     {team.name}
-                    {!readOnly && (
+                    {isAuthenticated && (
                       <button
                         type="button"
-                        onClick={() => unassignTeam(product.id, team.id)}
                         className="allocator-remove"
-                        aria-label={`Remove ${team.name} from ${product.name}`}
+                        aria-label={`Remove ${team.name}`}
+                        onClick={() => handleUnassign(product.id, team.id)}
                       >
                         ×
                       </button>
@@ -74,14 +87,14 @@ export function Allocator({ teams, products, readOnly = false }: AllocatorProps)
                   </span>
                 ))}
               </div>
-              {!readOnly && unallocated.length > 0 && (
+              {isAuthenticated && (
                 <div className="allocator-add">
-                  {unallocated.map((team) => (
+                  {unallocatedTeams.map((team) => (
                     <button
                       key={team.id}
                       type="button"
-                      onClick={() => assignTeam(product.id, team.id)}
                       className="allocator-add-btn"
+                      onClick={() => handleAssign(product.id, team.id)}
                     >
                       + {team.name}
                     </button>
@@ -93,8 +106,8 @@ export function Allocator({ teams, products, readOnly = false }: AllocatorProps)
         })}
       </div>
 
-      {!readOnly && (
-        <button type="button" onClick={handleCopyExport} className="allocator-export">
+      {isAuthenticated && (
+        <button type="button" className="allocator-export" onClick={exportAllocations}>
           Export allocations (copy JSON)
         </button>
       )}

@@ -1,14 +1,15 @@
 import { Routes, Route } from 'react-router-dom'
-import { useDb } from './useDb'
 import { DbProvider } from './DbContext'
+import { useDb } from './useDb'
+import { Nav } from './components/Nav'
 import { Landing } from './pages/Landing'
 import { ProductDetail } from './pages/ProductDetail'
 
 function AppContent() {
-  const dbValue = useDb()
-
+  const dbState = useDb()
   return (
-    <DbProvider value={dbValue}>
+    <DbProvider value={dbState}>
+      <Nav />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/product/:slug" element={<ProductDetail />} />

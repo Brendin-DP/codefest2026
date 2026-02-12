@@ -17,6 +17,16 @@ export function Hero({ event }: HeroProps) {
         <p className="hero-datetime">
           {event.date} • {event.time}
         </p>
+        <a
+          href="#teams"
+          className="hero-cta"
+          onClick={(e) => {
+            e.preventDefault()
+            document.getElementById('teams')?.scrollIntoView({ behavior: 'smooth' })
+          }}
+        >
+          View teams
+        </a>
       </div>
     </header>
   )

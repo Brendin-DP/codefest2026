@@ -1,27 +1,19 @@
-const AUTH_KEY = 'codefest-authenticated'
+const STORAGE_KEY = 'codefest-auth'
+const email = import.meta.env.VITE_AUTH_EMAIL ?? 'brendin.duplessis@affiliate.imd.org'
+const password = import.meta.env.VITE_AUTH_PASSWORD ?? 'Brendin@123'
 
-const expectedEmail = import.meta.env.VITE_AUTH_EMAIL ?? ''
-const expectedPassword = import.meta.env.VITE_AUTH_PASSWORD ?? ''
-
-export function login(email: string, password: string): boolean {
-  if (!expectedEmail || !expectedPassword) {
-    return false
-  }
-  if (email === expectedEmail && password === expectedPassword) {
-    sessionStorage.setItem(AUTH_KEY, '1')
+export function login(givenEmail: string, givenPassword: string): boolean {
+  if (givenEmail === email && givenPassword === password) {
+    sessionStorage.setItem(STORAGE_KEY, '1')
     return true
   }
   return false
 }
 
 export function logout(): void {
-  sessionStorage.removeItem(AUTH_KEY)
+  sessionStorage.removeItem(STORAGE_KEY)
 }
 
 export function isAuthenticated(): boolean {
-  return sessionStorage.getItem(AUTH_KEY) === '1'
-}
-
-export function hasAuthConfigured(): boolean {
-  return !!(expectedEmail && expectedPassword)
+  return sessionStorage.getItem(STORAGE_KEY) === '1'
 }

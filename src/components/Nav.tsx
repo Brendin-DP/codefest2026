@@ -1,54 +1,34 @@
+import { Link } from 'react-router-dom'
 import { useAuth } from '../AuthContext'
+import { LoginModal } from './LoginModal'
+import { useState } from 'react'
 import './Nav.css'
 
-const sections = [
-  { id: 'teams', label: 'Teams' },
-  { id: 'products', label: 'Products' },
-  { id: 'assign', label: 'Assignment' },
-]
-
-interface NavProps {
-  onLoginClick?: () => void
-}
-
-export function Nav({ onLoginClick }: NavProps) {
-  const { isAuthenticated, logout } = useAuth()
-
-  const handleLoginClick = (e: React.MouseEvent) => {
-    e.preventDefault()
-    onLoginClick?.()
-    document.getElementById('assign')?.scrollIntoView({ behavior: 'smooth' })
-  }
+export function Nav() {
+  const { isAuthenticated, login, logout } = useAuth()
+  const [loginOpen, setLoginOpen] = useState(false)
 
   return (
     <nav className="nav">
       <ul className="nav-list">
-        {sections.map(({ id, label }) => (
-          <li key={id}>
-            <a
-              href={`#${id}`}
-              className="nav-link"
-              onClick={(e) => {
-                e.preventDefault()
-                document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-              }}
-            >
-              {label}
-            </a>
-          </li>
-        ))}
+        <li><Link to="/#teams" className="nav-link">Teams</Link></li>
+        <li><Link to="/#products" className="nav-link">Products</Link></li>
+        <li><Link to="/#assignment" className="nav-link">Assignment</Link></li>
         <li className="nav-auth">
           {isAuthenticated ? (
-            <button type="button" className="nav-logout" onClick={logout}>
-              Logout
-            </button>
+            <button type="button" className="nav-logout" onClick={logout}>Logout</button>
           ) : (
-            <a href="#assign" className="nav-link" onClick={handleLoginClick}>
-              Login
-            </a>
+            <button type="button" className="nav-link" onClick={() => setLoginOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>Login</button>
           )}
         </li>
       </ul>
+      {loginOpen && (
+        <LoginModal
+          onClose={() => setLoginOpen(false)}
+          onSuccess={() => setLoginOpen(false)}
+          login={login}
+        />
+      )}
     </nav>
   )
 }
