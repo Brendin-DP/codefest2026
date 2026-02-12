@@ -77,7 +77,8 @@
       "nonNegotiables": [
         "Doesn't need a real database",
         "Must be deployed"
-      ]
+      ],
+      "sanityChecklistPdf": "/assets/Signal_Loop_Checklist.pdf"
     },
     {
       "id": "product-2",
@@ -94,7 +95,8 @@
       "nonNegotiables": [
         "Doesn't need deployment",
         "Real database required"
-      ]
+      ],
+      "sanityChecklistPdf": "/assets/Atlas_Systems_Checklist.pdf"
     },
     {
       "id": "product-3",
@@ -107,7 +109,8 @@
       "difficulty": 2,
       "riskLevel": 2,
       "reward": 3,
-      "logo": "/assets/logos/Mainframe.jpeg"
+      "logo": "/assets/logos/Mainframe.jpeg",
+      "sanityChecklistPdf": "/assets/Mainframe_Checklist.pdf"
     }
   ],
   "allocations": {

@@ -26,6 +26,7 @@ export interface Product {
   reward?: number
   logo?: string | null
   nonNegotiables?: string[] | null
+  sanityChecklistPdf?: string | null
 }
 
 export type Allocations = Record<string, string[]>
