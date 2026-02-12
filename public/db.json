@@ -10,38 +10,55 @@
       "id": "team-1",
       "name": "Team Alpha",
       "members": [
-        "Dev A",
-        "Dev B"
+        "Moe",
+        "Thabiso"
       ],
-      "avatar": null
+      "avatar": null,
+      "memberAvatars": [
+        "/assets/teams/Moe.png",
+        "/assets/teams/Thabiso.png"
+      ]
     },
     {
       "id": "team-2",
       "name": "Team Beta",
       "members": [
-        "Dev C",
-        "Dev D"
+        "Arthur",
+        "Katlego"
       ],
-      "avatar": null
+      "avatar": null,
+      "memberAvatars": [
+        "/assets/teams/Arthur.png",
+        "/assets/teams/Katlego.png"
+      ]
     },
     {
       "id": "team-3",
       "name": "Team Gamma",
       "members": [
-        "Dev E",
-        "Dev F"
+        "Ryan",
+        "Roy"
       ],
-      "avatar": null
+      "avatar": null,
+      "memberAvatars": [
+        "/assets/teams/Ryan Kanes.png",
+        "/assets/teams/Roy.png"
+      ]
     },
     {
       "id": "team-qa",
       "name": "QA Squad",
       "members": [
-        "QA 1",
-        "QA 2",
-        "QA 3"
+        "Abongile",
+        "Paballo",
+        "Yonela"
       ],
-      "avatar": null
+      "avatar": null,
+      "memberAvatars": [
+        "/assets/teams/Abongile.png",
+        "/assets/teams/Paballo Nkuna.png",
+        "/assets/teams/Yonela.png"
+      ]
     }
   ],
   "products": [
@@ -97,9 +114,8 @@
     "product-3": [
       "team-qa"
     ],
-    "product-2": [
+    "product-1": [
       "team-1",
-      "team-2",
       "team-3"
     ]
   }

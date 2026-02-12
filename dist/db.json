@@ -9,39 +9,30 @@
     {
       "id": "team-1",
       "name": "Team Alpha",
-      "members": [
-        "Dev A",
-        "Dev B"
-      ],
-      "avatar": null
+      "members": ["Moe", "Thabiso"],
+      "avatar": null,
+      "memberAvatars": ["/assets/teams/Moe.png", "/assets/teams/Thabiso.png"]
     },
     {
       "id": "team-2",
       "name": "Team Beta",
-      "members": [
-        "Dev C",
-        "Dev D"
-      ],
-      "avatar": null
+      "members": ["Arthur", "Katlego"],
+      "avatar": null,
+      "memberAvatars": ["/assets/teams/Arthur.png", "/assets/teams/Katlego.png"]
     },
     {
       "id": "team-3",
       "name": "Team Gamma",
-      "members": [
-        "Dev E",
-        "Dev F"
-      ],
-      "avatar": null
+      "members": ["Ryan", "Roy"],
+      "avatar": null,
+      "memberAvatars": ["/assets/teams/Ryan Kanes.png", "/assets/teams/Roy.png"]
     },
     {
       "id": "team-qa",
       "name": "QA Squad",
-      "members": [
-        "QA 1",
-        "QA 2",
-        "QA 3"
-      ],
-      "avatar": null
+      "members": ["Abongile", "Paballo", "Yonela"],
+      "avatar": null,
+      "memberAvatars": ["/assets/teams/Abongile.png", "/assets/teams/Paballo Nkuna.png", "/assets/teams/Yonela.png"]
     }
   ],
   "products": [
@@ -94,11 +85,9 @@
     }
   ],
   "allocations": {
-    "product-1": [
-      "team-1"
-    ],
     "product-3": [
       "team-qa"
-    ]
+    ],
+    "product-2": []
   }
 }

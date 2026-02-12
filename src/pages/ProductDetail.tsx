@@ -55,6 +55,40 @@ export function ProductDetail() {
           </div>
         </div>
 
+        {teams.length > 0 && (
+          <section className="product-detail-teams">
+            <h2>Teams assigned</h2>
+            <div className="product-detail-teams-grid">
+              {teams.map((team) => {
+                const displayMembers = team.members.slice(0, 3)
+                const avatars = team.memberAvatars ?? []
+                return (
+                  <div key={team.id} className="product-detail-team-tile">
+                    <h3 className="product-detail-team-tile-title">{team.name}</h3>
+                    <div className="product-detail-team-tile-avatars">
+                      {displayMembers.map((member, i) => (
+                        <div key={member} className="product-detail-member-avatar">
+                          {avatars[i] ? (
+                            <img src={avatars[i]!} alt={member} />
+                          ) : (
+                            <span>
+                              {member
+                                .split(' ')
+                                .map((w) => w[0])
+                                .join('')
+                                .slice(0, 2)}
+                            </span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </section>
+        )}
+
         <section className="product-detail-scope">
           <div
             className="product-detail-content"
@@ -73,17 +107,6 @@ export function ProductDetail() {
           <section className="product-detail-risk">
             <h2>Risk</h2>
             <p>{product.risk}</p>
-          </section>
-        )}
-
-        {teams.length > 0 && (
-          <section className="product-detail-teams">
-            <h2>Assigned teams</h2>
-            <ul>
-              {teams.map((team) => (
-                <li key={team.id}>{team.name}</li>
-              ))}
-            </ul>
           </section>
         )}
 

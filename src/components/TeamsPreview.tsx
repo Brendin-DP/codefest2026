@@ -6,12 +6,19 @@ interface TeamsPreviewProps {
   teams: Team[]
 }
 
-function MemberAvatar({ name }: { name: string }) {
+function MemberAvatar({ name, avatar }: { name: string; avatar?: string | null }) {
   const initials = name
     .split(' ')
     .map((w) => w[0])
     .join('')
     .slice(0, 2)
+  if (avatar) {
+    return (
+      <div className="member-avatar member-avatar--img">
+        <img src={avatar} alt={name} />
+      </div>
+    )
+  }
   return <div className="member-avatar"><span>{initials}</span></div>
 }
 
@@ -25,7 +32,8 @@ export function TeamsPreview({ teams }: TeamsPreviewProps) {
         {teams.map((team) => {
           const productId = getProductForTeam(team.id)
           const isAllocated = !!productId
-          const displayMembers = team.members.slice(0, 2)
+          const displayMembers = team.members.slice(0, 3)
+          const avatars = team.memberAvatars ?? []
 
           return (
             <div
@@ -34,8 +42,8 @@ export function TeamsPreview({ teams }: TeamsPreviewProps) {
             >
               <h3 className="team-title">{team.name}</h3>
               <div className="team-avatars">
-                {displayMembers.map((member) => (
-                  <MemberAvatar key={member} name={member} />
+                {displayMembers.map((member, i) => (
+                  <MemberAvatar key={member} name={member} avatar={avatars[i]} />
                 ))}
               </div>
               {isAllocated && (

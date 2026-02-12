@@ -10,6 +10,7 @@ export interface Team {
   name: string
   members: string[]
   avatar: string | null
+  memberAvatars?: (string | null)[]
 }
 
 export interface Product {
