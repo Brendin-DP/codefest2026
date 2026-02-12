@@ -94,6 +94,9 @@
     }
   ],
   "allocations": {
+    "product-1": [
+      "team-1"
+    ],
     "product-3": [
       "team-qa"
     ]

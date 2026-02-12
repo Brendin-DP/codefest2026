@@ -12,6 +12,7 @@ const app = express()
 app.use(express.json())
 
 app.get('/api/db', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, must-revalidate')
   try {
     if (!existsSync(dbPath)) {
       return res.status(404).json({ error: 'db.json not found' })
@@ -25,6 +26,7 @@ app.get('/api/db', (req, res) => {
 })
 
 app.patch('/api/allocations', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, must-revalidate')
   try {
     const { allocations } = req.body
     if (!allocations || typeof allocations !== 'object') {
@@ -43,9 +45,22 @@ app.patch('/api/allocations', (req, res) => {
   }
 })
 
+app.get('/db.json', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, must-revalidate')
+  try {
+    if (!existsSync(dbPath)) {
+      return res.status(404).send('db.json not found')
+    }
+    const raw = readFileSync(dbPath, 'utf-8')
+    res.type('json').send(raw)
+  } catch (err) {
+    res.status(500).send(err?.message ?? 'Failed to read db')
+  }
+})
+
 if (existsSync(distPath)) {
   app.use(express.static(distPath))
-  app.get('*', (req, res, next) => {
+  app.get('/*splat', (req, res, next) => {
     if (req.path.startsWith('/api')) return next()
     res.sendFile(join(distPath, 'index.html'))
   })
