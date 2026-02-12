@@ -4,11 +4,21 @@ import './Nav.css'
 const sections = [
   { id: 'teams', label: 'Teams' },
   { id: 'products', label: 'Products' },
-  { id: 'assign', label: 'Assign' },
+  { id: 'assign', label: 'Assignment' },
 ]
 
-export function Nav() {
+interface NavProps {
+  onLoginClick?: () => void
+}
+
+export function Nav({ onLoginClick }: NavProps) {
   const { isAuthenticated, logout } = useAuth()
+
+  const handleLoginClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    onLoginClick?.()
+    document.getElementById('assign')?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <nav className="nav">
@@ -33,10 +43,7 @@ export function Nav() {
               Logout
             </button>
           ) : (
-            <a href="#assign" className="nav-link" onClick={(e) => {
-              e.preventDefault()
-              document.getElementById('assign')?.scrollIntoView({ behavior: 'smooth' })
-            }}>
+            <a href="#assign" className="nav-link" onClick={handleLoginClick}>
               Login
             </a>
           )}

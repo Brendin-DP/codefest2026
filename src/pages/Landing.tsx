@@ -31,7 +31,7 @@ export function Landing() {
 
   return (
     <main className="landing-page">
-      <Nav />
+      <Nav onLoginClick={() => setShowLogin(true)} />
       <Hero event={db.event} />
       <div className="landing-sections">
         <TeamsPreview teams={db.teams} />
@@ -47,15 +47,6 @@ export function Landing() {
             products={db.products}
             readOnly={!isAuthenticated}
           />
-          {!isAuthenticated && !showLogin && (
-            <button
-              type="button"
-              className="allocator-login-btn"
-              onClick={() => setShowLogin(true)}
-            >
-              Login to manage
-            </button>
-          )}
         </section>
       </div>
     </main>

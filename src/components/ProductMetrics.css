@@ -1,0 +1,25 @@
+.product-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.product-metric em {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--text);
+  margin-right: 0.35rem;
+}
+
+.product-metrics--compact {
+  display: flex;
+  gap: 0 1rem;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.product-metrics--compact span {
+  opacity: 0.9;
+}

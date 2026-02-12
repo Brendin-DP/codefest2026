@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { useDbContext } from '../DbContext'
 import type { Team } from '../types'
+import { ProductMetrics } from '../components/ProductMetrics'
 import './ProductDetail.css'
 
 export function ProductDetail() {
@@ -41,11 +42,25 @@ export function ProductDetail() {
       <Link to="/" className="product-detail-back">← Back</Link>
 
       <article className="product-detail">
-        <h1>{product.name}</h1>
+        <div className="product-detail-header">
+          {product.logo && (
+            <img src={product.logo} alt="" className="product-detail-logo" />
+          )}
+          <div>
+            <h1>{product.name}</h1>
+            {product.subtitle && (
+              <p className="product-detail-subtitle">{product.subtitle}</p>
+            )}
+          </div>
+        </div>
+        <ProductMetrics product={product} />
 
         <section className="product-detail-scope">
           <h2>Scope</h2>
-          <div className="product-detail-content">{product.scope}</div>
+          <div
+            className="product-detail-content"
+            dangerouslySetInnerHTML={{ __html: product.scope }}
+          />
         </section>
 
         {product.caveat && (

@@ -8,6 +8,7 @@ interface HeroProps {
 export function Hero({ event }: HeroProps) {
   return (
     <header className="hero">
+      <div className="hero-overlay" aria-hidden />
       <div className="hero-grid" aria-hidden />
       <div className="hero-scanlines" aria-hidden />
       <div className="hero-content">

@@ -16,9 +16,14 @@ export interface Product {
   id: string
   name: string
   slug: string
+  subtitle?: string | null
   scope: string
   caveat: string | null
   risk: string | null
+  difficulty?: number
+  riskLevel?: number
+  reward?: number
+  logo?: string | null
 }
 
 export type Allocations = Record<string, string[]>

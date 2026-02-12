@@ -20,10 +20,28 @@
   box-shadow: var(--shadow);
 }
 
+.product-detail-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-detail-logo {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
 .product-detail h1 {
   font-size: 1.75rem;
-  margin: 0 0 1.5rem;
+  margin: 0;
   color: var(--text);
+}
+
+.product-detail .product-metrics {
+  margin-bottom: 1.5rem;
 }
 
 .product-detail h2 {
@@ -38,11 +56,61 @@
   margin-top: 0;
 }
 
+.product-detail-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0.35rem 0 0;
+  font-weight: 500;
+}
+
 .product-detail-content,
 .product-detail-caveat p,
 .product-detail-risk p {
   color: var(--text-muted);
   line-height: 1.7;
+}
+
+.product-detail-content h3 {
+  font-size: 1.1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  color: var(--text);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.product-detail-content h3:first-child {
+  margin-top: 0;
+}
+
+.product-detail-content h4 {
+  font-size: 0.95rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  color: var(--text);
+  margin: 1.25rem 0 0.5rem;
+}
+
+.product-detail-content p {
+  margin: 0.5rem 0;
+}
+
+.product-detail-content ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.product-detail-content ul li {
+  margin: 0.25rem 0;
+}
+
+.product-detail-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5rem 0;
+}
+
+.product-detail-content strong {
+  color: var(--text);
 }
 
 .product-detail-teams ul {
