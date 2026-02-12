@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import type { Product } from '../types'
-import { ProductMetrics } from './ProductMetrics'
 import './ProductsPreview.css'
 
 interface ProductsPreviewProps {
@@ -34,9 +33,13 @@ export function ProductsPreview({ products }: ProductsPreviewProps) {
               {product.subtitle && (
                 <p className="product-card-description">{product.subtitle}</p>
               )}
-              <ProductMetrics product={product} compact />
             </div>
-            <span className="product-arrow">→</span>
+            <div className="product-card-end">
+              {product.chip && (
+                <span className="product-chip">{product.chip}</span>
+              )}
+              <span className="product-arrow">→</span>
+            </div>
           </Link>
         ))}
       </div>

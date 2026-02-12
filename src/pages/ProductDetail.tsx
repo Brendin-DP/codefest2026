@@ -1,6 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
 import { useDbContext } from '../DbContext'
-import { ProductMetrics } from '../components/ProductMetrics'
 import './ProductDetail.css'
 
 export function ProductDetail() {
@@ -47,7 +46,6 @@ export function ProductDetail() {
             {product.subtitle && (
               <p className="product-detail-subtitle">{product.subtitle}</p>
             )}
-            <ProductMetrics product={product} />
           </div>
         </div>
 

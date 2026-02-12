@@ -12,7 +12,7 @@
       "members": ["Moe", "Thabiso"],
       "avatar": null,
       "memberAvatars": ["/assets/teams/Moe.png", "/assets/teams/Thabiso.png"],
-      "repo": null
+      "repo": "https://imd.ghe.com/imd/TeamAlpha"
     },
     {
       "id": "team-2",
@@ -20,7 +20,7 @@
       "members": ["Arthur", "Katlego"],
       "avatar": null,
       "memberAvatars": ["/assets/teams/Arthur.png", "/assets/teams/Katlego.png"],
-      "repo": null
+      "repo": "https://imd.ghe.com/imd/TeamBeta"
     },
     {
       "id": "team-3",
@@ -28,7 +28,7 @@
       "members": ["Ryan", "Roy"],
       "avatar": null,
       "memberAvatars": ["/assets/teams/ryan.png", "/assets/teams/Roy.png"],
-      "repo": null
+      "repo": "https://imd.ghe.com/imd/TeamGamma"
     },
     {
       "id": "team-qa",
@@ -36,7 +36,7 @@
       "members": ["Abongile", "Paballo", "Yonela"],
       "avatar": null,
       "memberAvatars": ["/assets/teams/Abongile.png", "/assets/teams/Paballo.png", "/assets/teams/Yonela.png"],
-      "repo": null
+      "repo": "https://imd.ghe.com/imd/TeamQASquad"
     }
   ],
   "products": [

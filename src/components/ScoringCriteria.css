@@ -19,24 +19,127 @@
   line-height: 1.6;
 }
 
-.scoring-criteria-list {
+.scoring-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.scoring-level-row {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.scoring-level-bar {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.scoring-level-segment {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 2px solid var(--border);
+}
+
+.scoring-level-segment.filled-red {
+  background: #dc2626;
+  border-color: #dc2626;
+}
+
+.scoring-level-segment.filled-yellow {
+  background: #ca8a04;
+  border-color: #ca8a04;
+}
+
+.scoring-level-segment.filled-green {
+  background: #16a34a;
+  border-color: #16a34a;
+}
+
+.scoring-level-segment.empty {
+  background: transparent;
+}
+
+.scoring-level-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.scoring-level-title {
+  font-size: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 0.25rem;
+}
+
+.scoring-level-subtitle {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0 0 0.5rem;
+}
+
+.scoring-level-bullets {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.scoring-criteria-list li {
+.scoring-level-bullets li {
   position: relative;
-  padding: 0.5rem 0 0.5rem 1.5rem;
-  color: var(--text);
-  font-size: 1rem;
+  padding: 0.25rem 0 0.25rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
-.scoring-criteria-list li::before {
+.scoring-level-bullets li::before {
   content: '•';
   position: absolute;
   left: 0;
   color: var(--accent);
   font-weight: 600;
+}
+
+.scoring-danger-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  border-radius: 10px;
+}
+
+.scoring-danger-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.scoring-completion-message {
+  margin: 2rem 0 1rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.scoring-danger-alert p {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #b91c1c;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .scoring-level-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 }

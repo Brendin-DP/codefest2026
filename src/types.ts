@@ -28,6 +28,7 @@ export interface Product {
   logo?: string | null
   nonNegotiables?: string[] | null
   sanityChecklistPdf?: string | null
+  chip?: string | null
 }
 
 export interface Db {
