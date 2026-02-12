@@ -41,7 +41,7 @@
       ],
       "avatar": null,
       "memberAvatars": [
-        "/assets/teams/Ryan Kanes.png",
+        "/assets/teams/ryan.png",
         "/assets/teams/Roy.png"
       ]
     },
@@ -56,7 +56,7 @@
       "avatar": null,
       "memberAvatars": [
         "/assets/teams/Abongile.png",
-        "/assets/teams/Paballo Nkuna.png",
+        "/assets/teams/Paballo.png",
         "/assets/teams/Yonela.png"
       ]
     }
@@ -114,6 +114,8 @@
     "product-3": [
       "team-qa"
     ],
-    "product-1": []
+    "product-1": [
+      "team-1"
+    ]
   }
 }
