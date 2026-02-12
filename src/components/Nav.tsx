@@ -14,7 +14,6 @@ export function Nav() {
         <li><Link to="/#teams" className="nav-link">Teams</Link></li>
         <li><Link to="/#products" className="nav-link">Products</Link></li>
         <li><Link to="/#scoring" className="nav-link">Scoring</Link></li>
-        <li><Link to="/#assignment" className="nav-link">Assignment</Link></li>
         <li className="nav-auth">
           {isAuthenticated ? (
             <button type="button" className="nav-logout" onClick={logout}>Logout</button>

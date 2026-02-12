@@ -11,6 +11,7 @@ export interface Team {
   members: string[]
   avatar: string | null
   memberAvatars?: (string | null)[]
+  repo?: string | null
 }
 
 export interface Product {
@@ -29,11 +30,8 @@ export interface Product {
   sanityChecklistPdf?: string | null
 }
 
-export type Allocations = Record<string, string[]>
-
 export interface Db {
   event: Event
   teams: Team[]
   products: Product[]
-  allocations: Allocations
 }

@@ -1,5 +1,4 @@
 import type { Team } from '../types'
-import { useDbContext } from '../DbContext'
 import './TeamsPreview.css'
 
 interface TeamsPreviewProps {
@@ -23,8 +22,6 @@ function MemberAvatar({ name, avatar }: { name: string; avatar?: string | null }
 }
 
 export function TeamsPreview({ teams }: TeamsPreviewProps) {
-  const { getProductForTeam } = useDbContext()
-
   return (
     <section id="teams" className="teams-preview section">
       <h2 className="section-title">
@@ -33,24 +30,26 @@ export function TeamsPreview({ teams }: TeamsPreviewProps) {
       </h2>
       <div className="teams-grid">
         {teams.map((team) => {
-          const productId = getProductForTeam(team.id)
-          const isAllocated = !!productId
           const displayMembers = team.members.slice(0, 3)
           const avatars = team.memberAvatars ?? []
 
           return (
-            <div
-              key={team.id}
-              className={`team-card ${isAllocated ? 'allocated' : 'unallocated'}`}
-            >
+            <div key={team.id} className="team-card">
               <h3 className="team-title">{team.name}</h3>
               <div className="team-avatars">
                 {displayMembers.map((member, i) => (
                   <MemberAvatar key={member} name={member} avatar={avatars[i]} />
                 ))}
               </div>
-              {isAllocated && (
-                <span className="team-status">Assigned</span>
+              {team.repo && (
+                <a
+                  href={team.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="team-repo-link"
+                >
+                  Team repo
+                </a>
               )}
             </div>
           )

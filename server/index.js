@@ -1,5 +1,5 @@
 import express from 'express'
-import { readFileSync, writeFileSync, existsSync } from 'fs'
+import { readFileSync, existsSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 
@@ -22,26 +22,6 @@ app.get('/api/db', (req, res) => {
     res.json(db)
   } catch (err) {
     res.status(500).json({ error: err?.message ?? 'Failed to read db' })
-  }
-})
-
-app.patch('/api/allocations', (req, res) => {
-  res.setHeader('Cache-Control', 'no-store, must-revalidate')
-  try {
-    const { allocations } = req.body
-    if (!allocations || typeof allocations !== 'object') {
-      return res.status(400).json({ error: 'allocations object required' })
-    }
-    if (!existsSync(dbPath)) {
-      return res.status(404).json({ error: 'db.json not found' })
-    }
-    const raw = readFileSync(dbPath, 'utf-8')
-    const db = JSON.parse(raw)
-    db.allocations = allocations
-    writeFileSync(dbPath, JSON.stringify(db, null, 2))
-    res.json({ ok: true })
-  } catch (err) {
-    res.status(500).json({ error: err?.message ?? 'Failed to save allocations' })
   }
 })
 

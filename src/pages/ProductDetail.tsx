@@ -1,12 +1,11 @@
 import { useParams, Link } from 'react-router-dom'
 import { useDbContext } from '../DbContext'
-import type { Team } from '../types'
 import { ProductMetrics } from '../components/ProductMetrics'
 import './ProductDetail.css'
 
 export function ProductDetail() {
   const { slug } = useParams<{ slug: string }>()
-  const { db, loading, error, getTeamsForProduct } = useDbContext()
+  const { db, loading, error } = useDbContext()
 
   if (loading) {
     return (
@@ -34,9 +33,6 @@ export function ProductDetail() {
     )
   }
 
-  const teamIds = getTeamsForProduct(product.id)
-  const teams: Team[] = db.teams.filter((t) => teamIds.includes(t.id))
-
   return (
     <main className="product-detail-page">
       <Link to="/" className="product-detail-back">← Back</Link>
@@ -54,40 +50,6 @@ export function ProductDetail() {
             <ProductMetrics product={product} />
           </div>
         </div>
-
-        {teams.length > 0 && (
-          <section className="product-detail-teams">
-            <h2>Teams assigned</h2>
-            <div className="product-detail-teams-grid">
-              {teams.map((team) => {
-                const displayMembers = team.members.slice(0, 3)
-                const avatars = team.memberAvatars ?? []
-                return (
-                  <div key={team.id} className="product-detail-team-tile">
-                    <h3 className="product-detail-team-tile-title">{team.name}</h3>
-                    <div className="product-detail-team-tile-avatars">
-                      {displayMembers.map((member, i) => (
-                        <div key={member} className="product-detail-member-avatar">
-                          {avatars[i] ? (
-                            <img src={avatars[i]!} alt={member} />
-                          ) : (
-                            <span>
-                              {member
-                                .split(' ')
-                                .map((w) => w[0])
-                                .join('')
-                                .slice(0, 2)}
-                            </span>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </section>
-        )}
 
         <section className="product-detail-scope">
           <div

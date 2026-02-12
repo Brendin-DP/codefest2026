@@ -26,11 +26,6 @@
   text-align: center;
 }
 
-.team-card.allocated {
-  border-color: var(--accent-light);
-  background: linear-gradient(to bottom, rgba(79, 70, 229, 0.04), var(--bg-section));
-}
-
 .team-title {
   font-size: 1.25rem;
   font-weight: 600;
@@ -65,10 +60,16 @@
   object-fit: cover;
 }
 
-.team-status {
-  font-size: 0.75rem;
-  color: var(--accent);
+.team-repo-link {
+  font-size: 0.875rem;
   font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  margin-top: 0.25rem;
+}
+
+.team-repo-link:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 640px) {

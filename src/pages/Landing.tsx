@@ -4,7 +4,6 @@ import { useDbContext } from '../DbContext'
 import { Hero } from '../components/Hero'
 import { TeamsPreview } from '../components/TeamsPreview'
 import { ProductsPreview } from '../components/ProductsPreview'
-import { Allocator } from '../components/Allocator'
 import { ScoringCriteria } from '../components/ScoringCriteria'
 
 export function Landing() {
@@ -41,7 +40,6 @@ export function Landing() {
         <TeamsPreview teams={db.teams} />
         <ProductsPreview products={db.products} />
         <ScoringCriteria />
-        <Allocator />
       </div>
     </div>
   )

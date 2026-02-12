@@ -42,7 +42,7 @@ export function LoginModal({ onClose, onSuccess, login }: LoginModalProps) {
         <div className="login-form-wrapper">
           <form className="login-form" onSubmit={handleSubmit}>
             <h3>Admin login</h3>
-            <p className="login-hint">Required to manage team allocations.</p>
+            <p className="login-hint">Admin access.</p>
             {error && <p className="login-error">{error}</p>}
             <div>
               <label className="login-label" htmlFor="login-email">Email</label>

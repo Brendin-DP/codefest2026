@@ -9,92 +9,51 @@
     {
       "id": "team-1",
       "name": "Team Alpha",
-      "members": [
-        "Moe",
-        "Thabiso"
-      ],
+      "members": ["Moe", "Thabiso"],
       "avatar": null,
-      "memberAvatars": [
-        "/assets/teams/Moe.png",
-        "/assets/teams/Thabiso.png"
-      ]
+      "memberAvatars": ["/assets/teams/Moe.png", "/assets/teams/Thabiso.png"],
+      "repo": null
     },
     {
       "id": "team-2",
       "name": "Team Beta",
-      "members": [
-        "Arthur",
-        "Katlego"
-      ],
+      "members": ["Arthur", "Katlego"],
       "avatar": null,
-      "memberAvatars": [
-        "/assets/teams/Arthur.png",
-        "/assets/teams/Katlego.png"
-      ]
+      "memberAvatars": ["/assets/teams/Arthur.png", "/assets/teams/Katlego.png"],
+      "repo": null
     },
     {
       "id": "team-3",
       "name": "Team Gamma",
-      "members": [
-        "Ryan",
-        "Roy"
-      ],
+      "members": ["Ryan", "Roy"],
       "avatar": null,
-      "memberAvatars": [
-        "/assets/teams/Ryan Kanes.png",
-        "/assets/teams/Roy.png"
-      ]
+      "memberAvatars": ["/assets/teams/ryan.png", "/assets/teams/Roy.png"],
+      "repo": null
     },
     {
       "id": "team-qa",
       "name": "QA Squad",
-      "members": [
-        "Abongile",
-        "Paballo",
-        "Yonela"
-      ],
+      "members": ["Abongile", "Paballo", "Yonela"],
       "avatar": null,
-      "memberAvatars": [
-        "/assets/teams/Abongile.png",
-        "/assets/teams/Paballo Nkuna.png",
-        "/assets/teams/Yonela.png"
-      ]
+      "memberAvatars": ["/assets/teams/Abongile.png", "/assets/teams/Paballo.png", "/assets/teams/Yonela.png"],
+      "repo": null
     }
   ],
   "products": [
-    {
-      "id": "product-1",
-      "name": "Signal Loop",
-      "slug": "signal-loop",
-      "subtitle": "Matchmaking & Discovery App",
-      "scope": "<h3>Background</h3><p>Signal Loop is launching a discovery platform that connects people who need something with people who offer something. The goal is to reduce friction and surface relevant matches quickly. You are building the first release of the product.</p><hr/><h3>The Goal</h3><p>Deliver a working discovery platform that:</p><ul><li>Allows users to define what they need or offer</li><li>Surfaces matches</li><li>Makes connections visible</li><li>Provides oversight to administrators</li></ul><hr/><h3>Core Requirements</h3><h4>1. Two User Types</h4><ul><li>Consumer (looking for something)</li><li>Provider (offering something)</li></ul><p>Each must have: Profile, Status or preference settings</p><h4>2. Matching Logic</h4><ul><li>Some logic must exist to surface matches</li><li>It must be explainable</li><li>It does not need to be advanced</li></ul><h4>3. Consumer Experience</h4><ul><li>View recommended matches</li><li>View full profile</li><li>Favourite or bookmark users</li></ul><h4>4. Map View</h4><ul><li>Display users geographically</li><li>Can be simple or static</li><li>Must be visible and functional</li></ul><h4>5. Admin View</h4><p>Admin must be able to:</p><ul><li>View all users in a single table</li><li>Filter by user type</li><li>Filter by match status</li><li>Open a user and see matches</li></ul><h4>6. Notifications</h4><p>When a match is made, an email is sent</p><hr/><h3>Acceptance Criteria</h3><p>To be considered complete:</p><ul><li>Deployed and accessible via URL</li><li>At least 50 seeded users</li><li>Matching logic works</li><li>Data persists</li><li>Admin view provides visibility</li><li>Core flows work end-to-end</li></ul><hr/><h3>What is NOT Important</h3><ul><li>Sophisticated matching algorithms</li><li>AI-driven recommendation engines</li><li>Real-time updates</li><li>Chat or messaging features</li><li>Complex geo-accuracy</li><li>Interactive map enhancements</li><li>Scalable backend architecture</li><li>Polished UI animations</li><li>Perfect onboarding flows</li><li>Social features</li><li>Profile completeness</li><li>Enterprise-grade auth</li></ul><h3>Focus on</h3><p>Making connections visible and functional.</p>",
-      "caveat": null,
-      "risk": null,
-      "difficulty": 1,
-      "riskLevel": 2,
-      "reward": 2,
-      "logo": "/assets/logos/Signal Loop.jpeg",
-      "nonNegotiables": [
-        "Doesn't need a real database",
-        "Must be deployed"
-      ]
-    },
     {
       "id": "product-2",
       "name": "Atlas Systems",
       "slug": "atlas-systems",
       "subtitle": "Multi-Tenant Platform Build",
-      "scope": "<h3>Background</h3><p>Atlas Systems is building a white-label platform used by multiple enterprise clients. Each client requires: their own branded environment, isolated data, their own internal administrators, and a shared back-office view for Atlas.</p><p>Your team has been tasked with delivering the first working foundation of the Atlas platform. This is not the final product. This is the operational backbone.</p><hr/><h3>The Goal</h3><p>Deliver a working multi-tenant system that demonstrates:</p><ul><li>Client isolation</li><li>Role-based access</li><li>Basic admin self-serve</li><li>Branded client environments</li></ul><hr/><h3>Core Requirements</h3><h4>1. Multi-Tenant Structure</h4><ul><li>More than one client must exist</li><li>Each client must only see their own data</li><li>Switching clients must clearly change context</li></ul><h4>2. Roles & Access</h4><p>At minimum: Internal Admin (Atlas back-office), Client Admin, Client User. Each role should see appropriate navigation and data.</p><h4>3. Internal Admin View</h4><p><strong>Navigation:</strong> Dashboard, Settings, Profile</p><p><strong>Dashboard:</strong> Aggregated view across all clients, Charts or metrics (data can be mock or randomised), Ability to filter by client</p><p><strong>Settings:</strong> View list of clients, Create new client, Update client branding (name, colour, logo), Import client users (any reasonable format)</p><h4>4. Client View</h4><p><strong>Navigation:</strong> Dashboard, Profile</p><p><strong>Dashboard:</strong> Only client-specific data, Client branding applied</p><hr/><h3>Acceptance Criteria</h3><p>To be considered complete:</p><ul><li>Two or more tenants exist</li><li>Role-based views function</li><li>Client branding updates reflect in tenant view (theming / colour palette, logo, title)</li><li>Internal admin can view and manage clients</li><li>Core flows work end-to-end without demo tricks</li></ul><hr/><h3>What is NOT Important</h3><ul><li>Perfect database architecture</li><li>Future-proof scalability</li><li>Complex permission matrices</li><li>Billing systems</li><li>Audit logs</li><li>Edge-case handling</li><li>Pixel-perfect design</li><li>Advanced theming systems</li><li>Performance optimisation</li><li>Real analytics or meaningful metrics</li><li>Enterprise-grade authentication</li><li>Security hardening</li></ul><h3>Focus on</h3><p>A working, understandable foundation.</p>",
+      "scope": "<h3>Background</h3><p>Atlas Systems is building a white-label platform used by multiple enterprise clients. Each client requires: their own branded environment, isolated data, their own internal administrators, and a shared back-office view for Atlas.</p><p>Your team has been tasked with delivering the first working foundation of the Atlas platform. This is not the final product. This is the operational backbone.</p><hr/><h3>The Goal</h3><p>Deliver a working multi-tenant system that demonstrates:</p><ul><li>Client isolation</li><li>Role-based access</li><li>Basic admin self-serve</li><li>Branded client environments</li></ul><hr/><h3>Core Requirements</h3><h4>1. Multi-Tenant Structure</h4><ul><li>More than one client must exist</li><li>Each client must only see their own data</li><li>Switching clients must clearly change context</li></ul><h4>2. Roles & Access</h4><p>At minimum: Internal Admin (Atlas back-office), Client Admin, Client User. Each role should see appropriate navigation and data.</p><h4>3. Internal Admin View</h4><p><strong>Navigation:</strong> Dashboard, Settings, Profile</p><p><strong>Dashboard:</strong> Aggregated view across all clients, Charts or metrics (data can be mock or randomised), Ability to filter by client</p><p><strong>Settings:</strong> View list of clients, Create new client, Update client branding (name, colour, logo), Import client users (any reasonable format)</p><h4>4. Client View</h4><p><strong>Navigation:</strong> Dashboard, Profile</p><p><strong>Dashboard:</strong> Only client-specific data, Client branding applied</p><hr/><h3>Acceptance Criteria</h3><p>To be considered complete:</p><ul><li>Two or more tenants exist</li><li>Role-based views function</li><li>Client branding updates reflect in tenant view (theming / colour palette, logos, title)</li><li>Internal admin can view and manage clients</li><li>Core flows work end-to-end without demo tricks</li></ul><hr/><h3>What is NOT Important</h3><ul><li>Perfect database architecture</li><li>Future-proof scalability</li><li>Complex permission matrices</li><li>Billing systems</li><li>Audit logs</li><li>Edge-case handling</li><li>Pixel-perfect design</li><li>Advanced theming systems</li><li>Performance optimisation</li><li>Real analytics or meaningful metrics</li><li>Enterprise-grade authentication</li><li>Security hardening</li></ul><h3>Focus on</h3><p>A working, understandable foundation.</p>",
       "caveat": null,
       "risk": null,
       "difficulty": 3,
       "riskLevel": 3,
       "reward": 4,
       "logo": "/assets/logos/Atlas Systems.jpeg",
-      "nonNegotiables": [
-        "Doesn't need deployment",
-        "Real database required"
-      ]
+      "nonNegotiables": ["Doesn't need deployment", "Real database required"],
+      "sanityChecklistPdf": "/assets/Atlas_Systems_Checklist.pdf"
     },
     {
       "id": "product-3",
@@ -107,13 +66,8 @@
       "difficulty": 2,
       "riskLevel": 2,
       "reward": 3,
-      "logo": "/assets/logos/Mainframe.jpeg"
+      "logo": "/assets/logos/Mainframe.jpeg",
+      "sanityChecklistPdf": "/assets/Mainframe_Checklist.pdf"
     }
-  ],
-  "allocations": {
-    "product-3": [
-      "team-qa"
-    ],
-    "product-1": []
-  }
+  ]
 }
