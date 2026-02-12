@@ -12,6 +12,32 @@
   --border: #e2e8f0;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 10px 40px rgba(79, 70, 229, 0.12);
+  /* Synthwave palette */
+  --synth-cyan: #00f5ff;
+  --synth-magenta: #ff00ff;
+  --synth-purple: #a855f7;
+  --synth-yellow: #ffd700;
+  --synth-orange: #ff6b35;
+}
+
+.section-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.section-title-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 6px currentColor);
 }
 
 * {
@@ -36,7 +62,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 400;
 }
 

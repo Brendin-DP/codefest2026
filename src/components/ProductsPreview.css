@@ -8,10 +8,8 @@
   border: 1px solid var(--border);
 }
 
-.products-preview h2 {
-  font-size: 1.75rem;
+.products-preview .section-title {
   margin-bottom: 0.5rem;
-  color: var(--text);
 }
 
 .products-subtitle {

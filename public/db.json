@@ -114,9 +114,6 @@
     "product-3": [
       "team-qa"
     ],
-    "product-1": [
-      "team-1",
-      "team-3"
-    ]
+    "product-1": []
   }
 }

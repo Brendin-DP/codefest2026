@@ -3,10 +3,8 @@
   scroll-margin-top: 4rem;
 }
 
-.teams-preview h2 {
-  font-size: 1.75rem;
+.teams-preview .section-title {
   margin-bottom: 1.5rem;
-  color: var(--text);
 }
 
 .teams-grid {

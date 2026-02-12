@@ -5,6 +5,7 @@ import { Hero } from '../components/Hero'
 import { TeamsPreview } from '../components/TeamsPreview'
 import { ProductsPreview } from '../components/ProductsPreview'
 import { Allocator } from '../components/Allocator'
+import { ScoringCriteria } from '../components/ScoringCriteria'
 
 export function Landing() {
   const { db, loading, error } = useDbContext()
@@ -39,6 +40,7 @@ export function Landing() {
       <div className="landing-sections">
         <TeamsPreview teams={db.teams} />
         <ProductsPreview products={db.products} />
+        <ScoringCriteria />
         <Allocator />
       </div>
     </div>

@@ -9,30 +9,56 @@
     {
       "id": "team-1",
       "name": "Team Alpha",
-      "members": ["Moe", "Thabiso"],
+      "members": [
+        "Moe",
+        "Thabiso"
+      ],
       "avatar": null,
-      "memberAvatars": ["/assets/teams/Moe.png", "/assets/teams/Thabiso.png"]
+      "memberAvatars": [
+        "/assets/teams/Moe.png",
+        "/assets/teams/Thabiso.png"
+      ]
     },
     {
       "id": "team-2",
       "name": "Team Beta",
-      "members": ["Arthur", "Katlego"],
+      "members": [
+        "Arthur",
+        "Katlego"
+      ],
       "avatar": null,
-      "memberAvatars": ["/assets/teams/Arthur.png", "/assets/teams/Katlego.png"]
+      "memberAvatars": [
+        "/assets/teams/Arthur.png",
+        "/assets/teams/Katlego.png"
+      ]
     },
     {
       "id": "team-3",
       "name": "Team Gamma",
-      "members": ["Ryan", "Roy"],
+      "members": [
+        "Ryan",
+        "Roy"
+      ],
       "avatar": null,
-      "memberAvatars": ["/assets/teams/Ryan Kanes.png", "/assets/teams/Roy.png"]
+      "memberAvatars": [
+        "/assets/teams/Ryan Kanes.png",
+        "/assets/teams/Roy.png"
+      ]
     },
     {
       "id": "team-qa",
       "name": "QA Squad",
-      "members": ["Abongile", "Paballo", "Yonela"],
+      "members": [
+        "Abongile",
+        "Paballo",
+        "Yonela"
+      ],
       "avatar": null,
-      "memberAvatars": ["/assets/teams/Abongile.png", "/assets/teams/Paballo Nkuna.png", "/assets/teams/Yonela.png"]
+      "memberAvatars": [
+        "/assets/teams/Abongile.png",
+        "/assets/teams/Paballo Nkuna.png",
+        "/assets/teams/Yonela.png"
+      ]
     }
   ],
   "products": [
@@ -88,6 +114,6 @@
     "product-3": [
       "team-qa"
     ],
-    "product-2": []
+    "product-1": []
   }
 }

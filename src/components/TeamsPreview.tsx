@@ -27,7 +27,10 @@ export function TeamsPreview({ teams }: TeamsPreviewProps) {
 
   return (
     <section id="teams" className="teams-preview section">
-      <h2>Teams</h2>
+      <h2 className="section-title">
+        <span className="section-title-icon" style={{ color: 'var(--synth-cyan)' }}>◆</span>
+        Teams
+      </h2>
       <div className="teams-grid">
         {teams.map((team) => {
           const productId = getProductForTeam(team.id)

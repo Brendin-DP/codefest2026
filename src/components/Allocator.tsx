@@ -43,7 +43,10 @@ export function Allocator() {
 
   return (
     <section id="assignment" className="allocator section allocator-section">
-      <h2>Assignment</h2>
+      <h2 className="section-title">
+        <span className="section-title-icon" style={{ color: 'var(--synth-purple)' }}>▸</span>
+        Assignment
+      </h2>
       <p className="allocator-hint">
         {isAuthenticated
           ? 'Assign teams to products. Changes save automatically.'

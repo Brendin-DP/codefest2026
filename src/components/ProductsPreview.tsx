@@ -10,7 +10,10 @@ interface ProductsPreviewProps {
 export function ProductsPreview({ products }: ProductsPreviewProps) {
   return (
     <section id="products" className="products-preview section">
-      <h2>What we&apos;re building</h2>
+      <h2 className="section-title">
+        <span className="section-title-icon" style={{ color: 'var(--synth-magenta)' }}>◇</span>
+        What we&apos;re building
+      </h2>
       <p className="products-subtitle">Pick your challenge—each option has its own trade-offs and rewards.</p>
       <div className="products-list">
         {products.map((product) => (
