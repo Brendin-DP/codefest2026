@@ -1,0 +1,61 @@
+.product-detail-page {
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.product-detail-back {
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.product-detail {
+  border-radius: 16px;
+  padding: 2.5rem;
+  background: var(--bg-section);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.product-detail h1 {
+  font-size: 1.75rem;
+  margin: 0 0 1.5rem;
+  color: var(--text);
+}
+
+.product-detail h2 {
+  font-size: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  color: var(--text);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.product-detail h2:first-of-type {
+  margin-top: 0;
+}
+
+.product-detail-content,
+.product-detail-caveat p,
+.product-detail-risk p {
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.product-detail-teams ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-detail-teams li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.product-detail-teams li:last-child {
+  border-bottom: none;
+}

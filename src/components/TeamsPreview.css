@@ -1,0 +1,82 @@
+.teams-preview.section {
+  padding: 3rem 0;
+}
+
+.teams-preview h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.team-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  background: var(--bg-section);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.team-card.allocated {
+  border-color: var(--accent-light);
+  background: linear-gradient(to right, rgba(79, 70, 229, 0.04), transparent);
+}
+
+.team-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.team-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.team-members {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.team-status {
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .teams-grid {
+    grid-template-columns: 1fr;
+  }
+}
