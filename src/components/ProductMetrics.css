@@ -6,6 +6,23 @@
   color: var(--text-muted);
 }
 
+.product-metrics--stacked {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product-metric-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.product-metric-label {
+  font-weight: 500;
+  color: var(--text-muted);
+  min-width: 4.5rem;
+}
+
 .product-metric em {
   font-style: normal;
   font-weight: 500;
@@ -22,4 +39,14 @@
 
 .product-metrics--compact span {
   opacity: 0.9;
+}
+
+.product-metrics-label {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.product-metrics--reward-only {
+  align-items: center;
+  gap: 0.5rem;
 }

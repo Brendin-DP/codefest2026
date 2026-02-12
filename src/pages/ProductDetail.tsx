@@ -46,17 +46,16 @@ export function ProductDetail() {
           {product.logo && (
             <img src={product.logo} alt="" className="product-detail-logo" />
           )}
-          <div>
+          <div className="product-detail-header-info">
             <h1>{product.name}</h1>
             {product.subtitle && (
               <p className="product-detail-subtitle">{product.subtitle}</p>
             )}
+            <ProductMetrics product={product} />
           </div>
         </div>
-        <ProductMetrics product={product} />
 
         <section className="product-detail-scope">
-          <h2>Scope</h2>
           <div
             className="product-detail-content"
             dangerouslySetInnerHTML={{ __html: product.scope }}
@@ -83,6 +82,17 @@ export function ProductDetail() {
             <ul>
               {teams.map((team) => (
                 <li key={team.id}>{team.name}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {product.nonNegotiables && product.nonNegotiables.length > 0 && (
+          <section className="product-detail-nonnegotiables">
+            <h2>Non-negotiables</h2>
+            <ul>
+              {product.nonNegotiables.map((item, i) => (
+                <li key={i}>{item}</li>
               ))}
             </ul>
           </section>

@@ -24,6 +24,7 @@ export interface Product {
   riskLevel?: number
   reward?: number
   logo?: string | null
+  nonNegotiables?: string[] | null
 }
 
 export type Allocations = Record<string, string[]>
