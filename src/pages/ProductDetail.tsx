@@ -103,13 +103,6 @@ export function ProductDetail() {
           </section>
         )}
 
-        {product.risk && (
-          <section className="product-detail-risk">
-            <h2>Risk</h2>
-            <p>{product.risk}</p>
-          </section>
-        )}
-
         {product.nonNegotiables && product.nonNegotiables.length > 0 && (
           <section className="product-detail-nonnegotiables">
             <h2>Non-negotiables</h2>

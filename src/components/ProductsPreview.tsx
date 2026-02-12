@@ -34,7 +34,7 @@ export function ProductsPreview({ products }: ProductsPreviewProps) {
               {product.subtitle && (
                 <p className="product-card-description">{product.subtitle}</p>
               )}
-              <ProductMetrics product={product} compact rewardOnly />
+              <ProductMetrics product={product} compact />
             </div>
             <span className="product-arrow">→</span>
           </Link>

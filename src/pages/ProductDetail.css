@@ -97,8 +97,7 @@
 }
 
 .product-detail-content,
-.product-detail-caveat p,
-.product-detail-risk p {
+.product-detail-caveat p {
   color: var(--text-muted);
   line-height: 1.7;
 }

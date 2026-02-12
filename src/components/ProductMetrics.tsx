@@ -9,13 +9,11 @@ interface ProductMetricsProps {
 
 export function ProductMetrics({ product, compact = false, rewardOnly = false }: ProductMetricsProps) {
   const diff = product.difficulty ?? 0
-  const risk = product.riskLevel ?? 0
   const reward = product.reward ?? 0
 
   const fire = '🔥'
   const star = '⭐'
   const fireStr = fire.repeat(Math.min(diff, 5))
-  const riskStr = fire.repeat(Math.min(risk, 5))
   const starStr = star.repeat(Math.min(reward, 5))
 
   if (compact && rewardOnly) {
@@ -28,14 +26,23 @@ export function ProductMetrics({ product, compact = false, rewardOnly = false }:
     )
   }
 
-  if (diff === 0 && risk === 0 && reward === 0) return null
+  if (diff === 0 && reward === 0) return null
 
   if (compact) {
     return (
-      <div className="product-metrics product-metrics--compact">
-        <span title="Difficulty">{fireStr}</span>
-        <span title="Risk">{riskStr}</span>
-        <span title="Reward">{starStr}</span>
+      <div className="product-metrics product-metrics--compact product-metrics--tile">
+        {diff > 0 && (
+          <div className="product-metrics-inline">
+            <span className="product-metrics-label">Difficulty</span>
+            <span>{fireStr}</span>
+          </div>
+        )}
+        {reward > 0 && (
+          <div className="product-metrics-inline">
+            <span className="product-metrics-label">Reward</span>
+            <span>{starStr}</span>
+          </div>
+        )}
       </div>
     )
   }
@@ -46,12 +53,6 @@ export function ProductMetrics({ product, compact = false, rewardOnly = false }:
         <div className="product-metric-line">
           <span className="product-metric-label">Difficulty</span>
           <span>{fireStr}</span>
-        </div>
-      )}
-      {risk > 0 && (
-        <div className="product-metric-line">
-          <span className="product-metric-label">Risk</span>
-          <span>{riskStr}</span>
         </div>
       )}
       {reward > 0 && (

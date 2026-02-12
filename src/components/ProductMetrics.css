@@ -50,3 +50,15 @@
   align-items: center;
   gap: 0.5rem;
 }
+
+.product-metrics--tile {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+}
+
+.product-metrics-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
