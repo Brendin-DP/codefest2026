@@ -22,9 +22,19 @@ All event data lives in `public/db.json`:
 
 Edit `db.json` directly to change event info, teams, products, or initial allocations.
 
+## Admin login
+
+Only authenticated users can manage team allocations. Set your credentials via environment variables:
+
+1. Copy `.env.example` to `.env.local`
+2. Set `VITE_AUTH_EMAIL` and `VITE_AUTH_PASSWORD` to your email and password
+3. For deployment (Vercel/Netlify), add these as environment variables in the dashboard
+
+**Note:** Credentials are validated client-side and appear in the built JS. Use a unique password for this app only—not a critical account password.
+
 ## Team allocator
 
-On the landing page, use the **Assign teams** section to add teams to products. Allocations are stored in your browser’s localStorage and persist on that device.
+When logged in, use the **Assign teams** section to add teams to products. Allocations are stored in your browser’s localStorage and persist on that device.
 
 To share allocations with everyone (e.g. after redeploy):
 
@@ -43,7 +53,7 @@ Anyone visiting the site will then see the updated allocations.
 2. Build command: `npm run build`
 3. Output directory: `dist`
 
-No environment variables required.
+Add `VITE_AUTH_EMAIL` and `VITE_AUTH_PASSWORD` as environment variables for admin login.
 
 ## QR codes
 

@@ -5,9 +5,10 @@ import './Allocator.css'
 interface AllocatorProps {
   teams: Team[]
   products: Product[]
+  readOnly?: boolean
 }
 
-export function Allocator({ teams, products }: AllocatorProps) {
+export function Allocator({ teams, products, readOnly = false }: AllocatorProps) {
   const {
     getUnallocatedTeams,
     getTeamsForProduct,
@@ -25,10 +26,12 @@ export function Allocator({ teams, products }: AllocatorProps) {
   }
 
   return (
-    <section className="allocator section">
+    <section className={`allocator section ${readOnly ? 'allocator-readonly' : ''}`}>
       <h2>Assign teams</h2>
       <p className="allocator-hint">
-        Add teams to products. Changes save to this device. Use Export to update db.json for everyone.
+        {readOnly
+          ? 'View-only. Sign in to add or remove team allocations.'
+          : 'Add teams to products. Changes save to this device. Use Export to update db.json for everyone.'}
       </p>
 
       <div className="allocator-unallocated">
@@ -58,18 +61,20 @@ export function Allocator({ teams, products }: AllocatorProps) {
                 {assigned.map((team) => (
                   <span key={team.id} className="allocator-team-badge assigned">
                     {team.name}
-                    <button
-                      type="button"
-                      onClick={() => unassignTeam(product.id, team.id)}
-                      className="allocator-remove"
-                      aria-label={`Remove ${team.name} from ${product.name}`}
-                    >
-                      ×
-                    </button>
+                    {!readOnly && (
+                      <button
+                        type="button"
+                        onClick={() => unassignTeam(product.id, team.id)}
+                        className="allocator-remove"
+                        aria-label={`Remove ${team.name} from ${product.name}`}
+                      >
+                        ×
+                      </button>
+                    )}
                   </span>
                 ))}
               </div>
-              {unallocated.length > 0 && (
+              {!readOnly && unallocated.length > 0 && (
                 <div className="allocator-add">
                   {unallocated.map((team) => (
                     <button
@@ -88,9 +93,11 @@ export function Allocator({ teams, products }: AllocatorProps) {
         })}
       </div>
 
-      <button type="button" onClick={handleCopyExport} className="allocator-export">
-        Export allocations (copy JSON)
-      </button>
+      {!readOnly && (
+        <button type="button" onClick={handleCopyExport} className="allocator-export">
+          Export allocations (copy JSON)
+        </button>
+      )}
     </section>
   )
 }

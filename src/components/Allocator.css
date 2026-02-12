@@ -1,10 +1,37 @@
 .allocator.section {
   padding: 3rem;
   margin-top: 2rem;
+  scroll-margin-top: 4rem;
   background: var(--bg-section);
   border-radius: 16px;
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
+}
+
+.allocator-section {
+  scroll-margin-top: 4rem;
+}
+
+.allocator-gate {
+  text-align: center;
+}
+
+.allocator-section .allocator-login-btn {
+  display: block;
+  margin: 1.5rem auto 0;
+  padding: 0.65rem 1.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 500;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.allocator-section .allocator-login-btn:hover {
+  background: var(--accent-hover);
 }
 
 .allocator h2 {

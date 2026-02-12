@@ -8,7 +8,7 @@ interface ProductsPreviewProps {
 
 export function ProductsPreview({ products }: ProductsPreviewProps) {
   return (
-    <section className="products-preview section">
+    <section id="products" className="products-preview section">
       <h2>What we&apos;re building</h2>
       <div className="products-grid">
         {products.map((product) => (

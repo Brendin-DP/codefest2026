@@ -8,6 +8,8 @@ interface HeroProps {
 export function Hero({ event }: HeroProps) {
   return (
     <header className="hero">
+      <div className="hero-grid" aria-hidden />
+      <div className="hero-scanlines" aria-hidden />
       <div className="hero-content">
         <h1 className="hero-title">{event.title}</h1>
         <p className="hero-tagline">{event.tagline}</p>
