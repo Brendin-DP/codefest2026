@@ -52,8 +52,9 @@
       "riskLevel": 3,
       "reward": 4,
       "logo": "/assets/logos/Atlas Systems.jpeg",
-      "nonNegotiables": ["Doesn't need deployment", "Real database required"],
-      "sanityChecklistPdf": "/assets/Atlas_Systems_Checklist.pdf"
+      "nonNegotiables": ["Uses a real database (no mock-only storage)", "Multi-tenant data isolation is enforced", "Role-based access is implemented and working", "Tenant Theme customisation from back office"],
+      "sanityChecklistPdf": "/assets/Atlas_Systems_Checklist.pdf",
+      "chip": "Development Teams"
     },
     {
       "id": "product-3",
@@ -67,7 +68,9 @@
       "riskLevel": 2,
       "reward": 3,
       "logo": "/assets/logos/Mainframe.jpeg",
-      "sanityChecklistPdf": "/assets/Mainframe_Checklist.pdf"
+      "nonNegotiables": ["Automated regression runs without manual intervention", "Core user flow is covered by automated test", "Clear, visible pass/fail output is produced", "Test suite detects at least one meaningful failure scenario"],
+      "sanityChecklistPdf": "/assets/Mainframe_Checklist.pdf",
+      "chip": "QA Team"
     }
   ]
 }

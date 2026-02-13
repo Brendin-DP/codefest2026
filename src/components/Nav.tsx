@@ -11,6 +11,7 @@ export function Nav() {
   return (
     <nav className="nav">
       <ul className="nav-list">
+        <li><Link to="/#program" className="nav-link">Program</Link></li>
         <li><Link to="/#teams" className="nav-link">Teams</Link></li>
         <li><Link to="/#products" className="nav-link">Products</Link></li>
         <li><Link to="/#scoring" className="nav-link">Scoring</Link></li>

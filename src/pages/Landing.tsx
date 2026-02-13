@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useDbContext } from '../DbContext'
 import { Hero } from '../components/Hero'
+import { ProgramOverview } from '../components/ProgramOverview'
 import { TeamsPreview } from '../components/TeamsPreview'
 import { ProductsPreview } from '../components/ProductsPreview'
 import { ScoringCriteria } from '../components/ScoringCriteria'
@@ -37,6 +38,7 @@ export function Landing() {
     <div className="landing-page">
       <Hero event={db.event} />
       <div className="landing-sections">
+        <ProgramOverview />
         <TeamsPreview teams={db.teams} />
         <ProductsPreview products={db.products} />
         <ScoringCriteria />
